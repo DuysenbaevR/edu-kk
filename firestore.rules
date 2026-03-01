@@ -1,0 +1,14 @@
+// Firestore Security Rules
+// Paste into: Firebase Console → Firestore → Rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Materials: anyone can read, only authenticated users can write
+    match /materials/{docId} {
+      allow read: if true;
+      allow create, update, delete: if request.auth != null;
+    }
+  }
+}

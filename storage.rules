@@ -1,0 +1,30 @@
+// Firebase Storage Security Rules
+// Paste this into: Firebase Console → Storage → Rules
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Materials folder: public read, authenticated write
+    match /materials/{fileName} {
+      allow read: if true;
+      allow write: if request.auth != null
+                   && request.resource.size < 200 * 1024 * 1024  // max 200MB
+                   && (
+                        request.resource.contentType.matches('application/pdf')
+                     || request.resource.contentType.matches('application/vnd.ms-powerpoint')
+                     || request.resource.contentType.matches('application/vnd.openxmlformats-officedocument.presentationml.presentation')
+                     || request.resource.contentType.matches('video/mp4')
+                     || request.resource.contentType.matches('video/webm')
+                   );
+    }
+
+    // Thumbnails: public read, authenticated write
+    match /thumbnails/{fileName} {
+      allow read: if true;
+      allow write: if request.auth != null
+                   && request.resource.size < 5 * 1024 * 1024  // max 5MB
+                   && request.resource.contentType.matches('image/.*');
+    }
+  }
+}
