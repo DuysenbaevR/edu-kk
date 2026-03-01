@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --teal: #00B8C8;
+  --teal-dark: #0099AA;
+  --teal-light: #E0F7FA;
+  --teal-border: #B2EBF2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #ffffff;
+  color: #1a1a2e;
+}
+
+/* Teal underline decoration */
+.teal-underline {
+  position: relative;
+}
+.teal-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--teal);
+}
+
+/* Card hover animation */
+.material-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.material-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 184, 200, 0.2);
+}
+
+/* Sidebar active item */
+.sidebar-item.active {
+  font-weight: 800;
+  color: #1a1a2e;
+}
+.sidebar-item {
+  color: var(--teal);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.sidebar-item:hover {
+  color: var(--teal-dark);
+}
+
+/* Progress bar */
+.upload-progress {
+  height: 6px;
+  background: var(--teal-light);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.upload-progress-bar {
+  height: 100%;
+  background: var(--teal);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* Blob shape for profile */
+.blob-shape {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+/* Social icon hover */
+.social-icon {
+  transition: transform 0.15s, color 0.15s;
+}
+.social-icon:hover {
+  transform: scale(1.2);
+  color: var(--teal-dark);
+}
+
+/* Decorative diamond pattern background */
+.diamond-bg {
+  background-image: 
+    linear-gradient(45deg, rgba(0,184,200,0.05) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0,184,200,0.05) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(0,184,200,0.05) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0,184,200,0.05) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
